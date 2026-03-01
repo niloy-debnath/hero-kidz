@@ -1,7 +1,7 @@
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
-import "./globals.css";
-import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer";
+import { Aclonica, Geist, Geist_Mono, Poppins } from "next/font/google";
+import "../globals.css";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
 import localFont from "next/font/local";
 
 const poppins = Poppins({
@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const aclonica = Aclonica({
+  weight: ["400"],
+});
 export const banglaFont = localFont({
-  src: "../fonts/mayaboti-normal.ttf",
+  src: "../../../public/fonts/mayaboti-normal.ttf",
 });
 export const metadata = {
   title: "Hero Kidz",
@@ -24,7 +27,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${poppins.variable} antialiased`}>
+      <body className={`${aclonica.variable} ${aclonica.variable} antialiased`}>
         <header className="md:w-11/12 mx-auto py-2">
           <Navbar></Navbar>
         </header>

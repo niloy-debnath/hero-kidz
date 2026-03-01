@@ -1,4 +1,4 @@
-import { banglaFont } from "@/app/layout";
+import { banglaFont } from "@/app/(mainLayout)/layout";
 import Image from "next/image";
 import React from "react";
 

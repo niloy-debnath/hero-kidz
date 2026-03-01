@@ -1,3 +1,4 @@
+import { aclonica } from "@/app/(mainLayout)/layout";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -11,7 +12,7 @@ const Logo = () => {
         height={40}
         width={50}
       ></Image>
-      <h2 className="font-bold text-2xl">
+      <h2 className={`font-bold text-2xl ${aclonica.className}`}>
         Hero<span className="text-primary font-bold">Kidz</span>
       </h2>
     </Link>
