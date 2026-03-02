@@ -1,6 +1,8 @@
 "use client";
 
+import { slugify } from "@/app/(mainLayout)/products/[slug]/page";
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo } from "react";
 import { FaStar, FaRegHeart, FaCartPlus } from "react-icons/fa";
 
@@ -99,9 +101,11 @@ export default function ProductCard({ product }) {
 
         {/* Actions */}
         <div className="card-actions mt-3 grid grid-cols-2 gap-2">
-          <button className="btn btn-outline rounded-xl" type="button">
-            View Details
-          </button>
+          <Link href={`/products/${slugify(product.title)}`}>
+            <button className="btn btn-outline rounded-xl" type="button">
+              View Details
+            </button>
+          </Link>
 
           <button className="btn btn-primary rounded-xl gap-2" type="button">
             <FaCartPlus />
