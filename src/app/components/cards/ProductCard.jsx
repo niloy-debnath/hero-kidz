@@ -101,7 +101,7 @@ export default function ProductCard({ product }) {
 
         {/* Actions */}
         <div className="card-actions mt-3 grid grid-cols-2 gap-2">
-          <Link href={`/products/${slugify(product.title)}`}>
+          <Link href={`/products/${product._id}`}>
             <button className="btn btn-outline rounded-xl" type="button">
               View Details
             </button>

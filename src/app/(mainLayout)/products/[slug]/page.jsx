@@ -1,59 +1,43 @@
-"use client";
+// ❌ remove "use client"
 
 import Image from "next/image";
-import { useMemo, use, useEffect, useState } from "react";
-import products from "../../../data/toys.json";
 import { FaStar, FaShoppingCart } from "react-icons/fa";
+import { getSingleProduct } from "@/actions/server/product";
 
-export const slugify = (str = "") =>
-  str
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
+export default async function ProductDetails({ params }) {
+  const { slug } = await params;
 
-export default function ProductDetails({ params }) {
-  const { slug } = use(params);
+  const product = await getSingleProduct(slug);
 
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // local json instantly load hoy, tai demo skeleton dekhar jonno simulate
-    const t = setTimeout(() => setLoading(false), 1200);
-    return () => clearTimeout(t);
-  }, []);
-
-  const product = products.find((p) => slugify(p.title) === slug);
-
-  if (!product) return <p className="text-center mt-10">Product not found</p>;
+  if (!product) return null;
 
   const {
+    image,
     title,
     bangla,
-    image,
-    price,
     ratings,
     reviews,
     sold,
-    description,
+    price,
+    discount,
+    percentage,
     info,
+    description,
   } = product;
 
-  const discount = product.discount ?? product.percentage ?? 0;
-
-  // honestly useMemo not needed here, but keeping it:
-  // const finalPrice = useMemo(() => {
-  //   const p = Number(price || 0);
-  //   const d = Number(discount || 0);
-  //   return Math.round(p - (p * d) / 100);
-  // }, [price, discount]);
+  const off = discount ?? percentage ?? 0;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       <div className="grid md:grid-cols-2 gap-10">
         <div className="relative w-full h-[400px] rounded-xl overflow-hidden border">
-          <Image src={image} alt={title} fill className="object-cover" />
+          <Image
+            src={image}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+          />
         </div>
 
         <div className="space-y-4">
@@ -69,15 +53,8 @@ export default function ProductDetails({ params }) {
           </div>
 
           <div className="flex items-center gap-4">
-            {/* <p className="text-3xl font-bold text-primary">৳{finalPrice}</p> */}
-
-            {discount > 0 && (
-              <p className="line-through text-gray-400">৳{price}</p>
-            )}
-
-            {discount > 0 && (
-              <span className="badge badge-success">{discount}% OFF</span>
-            )}
+            {off > 0 && <p className="line-through text-gray-400">৳{price}</p>}
+            {off > 0 && <span className="badge badge-success">{off}% OFF</span>}
           </div>
 
           <div className="space-y-2">
