@@ -6,8 +6,8 @@ const Products = async () => {
   const products = await getProducts();
   // console.log(products);
   return (
-    <div>
-      <h2 className="text-center font-bold text-4xl">Our Products</h2>
+    <div className="py-20">
+      <h2 className="text-center font-bold text-4xl mb-10">Our Products</h2>
       <div className="grid grid-cols-3 gap-10 max-w-6xl mx-auto">
         {" "}
         {products.map((product) => (
