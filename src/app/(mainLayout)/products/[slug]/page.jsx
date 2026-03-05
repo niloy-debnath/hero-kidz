@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FaStar, FaShoppingCart } from "react-icons/fa";
 import { getSingleProduct } from "@/actions/server/product";
+import Add2Cart from "@/app/components/buttons/Add2Cart";
 
 export default async function ProductDetails({ params }) {
   const { slug } = await params;
@@ -65,10 +66,7 @@ export default async function ProductDetails({ params }) {
             ))}
           </div>
 
-          <button className="btn btn-primary gap-2 mt-4">
-            <FaShoppingCart />
-            Add to Cart
-          </button>
+          <Add2Cart product={product}></Add2Cart>
         </div>
       </div>
 

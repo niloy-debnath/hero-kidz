@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo } from "react";
 import { FaStar, FaRegHeart, FaCartPlus } from "react-icons/fa";
+import Add2Cart from "../buttons/Add2Cart";
 
 export default function ProductCard({ product }) {
   const {
@@ -107,10 +108,7 @@ export default function ProductCard({ product }) {
             </button>
           </Link>
 
-          <button className="btn btn-primary rounded-xl gap-2" type="button">
-            <FaCartPlus />
-            Add to Cart
-          </button>
+          <Add2Cart product={product}></Add2Cart>
         </div>
       </div>
     </div>
