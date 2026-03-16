@@ -3,6 +3,7 @@ import "../globals.css";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import localFont from "next/font/local";
+import AuthProvider from "@/provider/AuthProvider";
 
 const poppins = Poppins({
   weight: ["100", "200", "400", "600", "800"],
@@ -26,18 +27,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${aclonica.variable} ${aclonica.variable} antialiased`}>
-        <header className="md:w-11/12 mx-auto py-2">
-          <Navbar></Navbar>
-        </header>
-        <main className="md:w-11/12 mx-auto py-2 min-h-[calc(100svh-302px)]">
-          {children}
-        </main>
-        <footer>
-          <Footer></Footer>
-        </footer>
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <body
+          className={`${aclonica.variable} ${aclonica.variable} antialiased`}
+        >
+          <header className="md:w-11/12 mx-auto py-2">
+            <Navbar></Navbar>
+          </header>
+          <main className="md:w-11/12 mx-auto py-2 min-h-[calc(100svh-302px)]">
+            {children}
+          </main>
+          <footer>
+            <Footer></Footer>
+          </footer>
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

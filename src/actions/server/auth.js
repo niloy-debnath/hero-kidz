@@ -32,3 +32,20 @@ export const postUser = async (payload) => {
 
   return { ...result, ok: true, insertedId: result.insertedId.toString() };
 };
+
+export const loginUser = async (payload) => {
+  console.log(payload);
+  const { email, password } = payload;
+  const usersCollection = dbConnect(collections.USERS);
+  const user = await usersCollection.findOne({ email });
+  console.log(user);
+  if (!user) {
+    return null;
+  }
+  const isMatched = await bcrypt.compare(password, user.password);
+  if (isMatched) {
+    return user;
+  } else {
+    return null;
+  }
+};
