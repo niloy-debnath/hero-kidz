@@ -17,7 +17,7 @@ const Login = () => {
     const result = await signIn("credentials", {
       email: data.email,
       password: data.password,
-      callbackUrl: param.get("callbackUrl"),
+      callbackUrl: param.get("callbackUrl") || "/",
     });
     console.log(result);
     if (!result.ok) {

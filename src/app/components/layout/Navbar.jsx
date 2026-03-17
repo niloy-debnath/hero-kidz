@@ -1,9 +1,11 @@
 import React from "react";
+
 import Logo from "./Logo";
 import Navlink from "../buttons/Navlink";
 import { FiShoppingCart } from "react-icons/fi";
 import Link from "next/link";
 import AuthButton from "../buttons/AuthButton";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
   const nav = (
@@ -22,6 +24,7 @@ const Navbar = () => {
       </li>
     </>
   );
+
   return (
     <div>
       <div className="navbar bg-base-100 ">
@@ -59,6 +62,8 @@ const Navbar = () => {
         <div className="navbar-end space-x-8">
           <Link href={"/cart"} className="text-primary">
             <FiShoppingCart></FiShoppingCart>
+            {/* name of the user */}
+            <p></p>
           </Link>
           <AuthButton></AuthButton>
         </div>
